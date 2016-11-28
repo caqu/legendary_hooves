@@ -1,9 +1,10 @@
 TOKEN=26dafa1607
-IP=35.156.72.7
+IP=localhost
+PORT=3000
 MESSAGE_ID=Carlos_test
 
 function test {
-  curl -si -H "API_Token: $TOKEN" -H "API_base: /" -H 'Content-Type: application/json' "http://$IP" -d "$1" > /tmp/file
+  curl -si -H "API_Token: $TOKEN" -H "API_base: /" -H 'Content-Type: application/json' "http://$IP:$PORT" -d "$1" > /tmp/file
   cat /tmp/file
 }
 

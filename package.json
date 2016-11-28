@@ -1,0 +1,23 @@
+{
+  "name": "legendary_hooves",
+  "version": "1.0.0",
+  "description": "AWS GameDay",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caqu/legendary_hooves.git"
+  },
+  "author": "LH",
+  "license": "SEE LICENSE IN license.txt",
+  "bugs": {
+    "url": "https://github.com/caqu/legendary_hooves/issues"
+  },
+  "homepage": "https://github.com/caqu/legendary_hooves#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "redis": "^2.6.3"
+  }
+}
