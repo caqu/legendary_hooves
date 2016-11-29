@@ -51,7 +51,7 @@ app.post('/', function(req, res) {
         headers: {
           'x-gameday-token': req.get('API_Token')
         },
-        formData: 'data=' + (parts.join('') + "\n")
+        formData: parts.join('')
       };
       console.log('options', options);
       request.post(options, function(error, response, body) {
