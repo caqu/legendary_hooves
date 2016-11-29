@@ -47,21 +47,22 @@ app.post('/', function(req, res) {
     if (areAllPartsIn) {
       var options = {
         url: config.endpoint + '/' + msg_id,
+        method: "POST",
         headers: {
           'x-gameday-token': req.get('API_Token')
-        }
+        },
+        formData: 'data=' + (parts.join('') + "\n")
       };
       console.log('options', options);
-      request(options, function(error, response, body) {
-        console.log("Attempt to get credit was " + response.statusCode);
+      request.post(options, function(error, response, body) {
+        console.log(arguments);
         if (!error && response.statusCode == 200) {
           console.log(body); // Show the HTML for the Google homepage.
         }
       });
-      return res.send(parts.join('') + "\n");
-    } else {
-      return res.send('OK\n');
     }
+    return res.send('OK\n');
+
   });
 
 });
