@@ -20,6 +20,7 @@
     "aws-dynamodb": "^0.1.62",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "redis": "^2.6.3"
+    "redis": "^2.6.3",
+    "request": "^2.79.0"
   }
 }
