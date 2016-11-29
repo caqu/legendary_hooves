@@ -47,50 +47,32 @@ app.post('/', function(req, res) {
   // save in known position,
   db.get(msg_id + ":Parts", function(err, parts) {
     console.log('err', err);
-    console.log('parts', parts);
+    console.log('parts', parts, typeof parts);
     if (!parts) {
-      parts = new Array();
-    } else {};
+      parts = new Array(totals_number);
+    } else {
+      parts = JSON.parse(parts);
+    };
     console.log('2parts', parts);
     parts[part_number] = data;
-    console.log('3parts', parts);
-    db.set(msg_id + ':Parts', parts);
-  });
+    // console.log('3parts', parts);
+    db.set(msg_id + ':Parts', JSON.stringify(parts));
 
-  // Kill request
-  return res.send('temp');
-
-
-
-  // See if all parts are in
-  db.get(msg_id + ":TotalParts", function(err, totalParts) {
-
-    if (totalParts && typeof totalParts === 'number') {
-      totalParts = parseInt(totalParts, 10); // 2
-    } else {
-      // return res.status(500).send('Could not find totalParts');
-      console.error('Could not find totalParts');
-    }
+    // Build Response
     var areAllPartsIn = true;
-    console.log('totalParts', totalParts);
-    for (var i = 0, len = totalParts; i < len; i++) {
-      db.hmget(msg_id + ":" + i, 'Data', function partNumber(err,
-        partNumber) {
-        console.log(i, ' partNumber ', partNumber, err);
-        if (err) {
-          areAllPartsIn = false;
-        }
-      });
+    for (var i = 0, len = totals_number; i < len; i++) {
+      console.log('parts[i]', parts[i]);
+      if (!parts[i]) {
+        areAllPartsIn = false;
+      }
     }
     if (areAllPartsIn) {
       return res.send('OK all in...' + msg_id + ' ' + part_number + ' ' +
         data + "\n");
     } else {
-      return res.send('OK not all are in yet');
+      return res.send('OK not all are in yet\n');
     }
-
   });
-
   return;
 
   // # Try to get the parts of the message from the MESSAGES dictionary.

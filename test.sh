@@ -1,7 +1,8 @@
 TOKEN=26dafa1607
 IP=localhost
 PORT=3000
-MESSAGE_ID=Carlos_test_2
+MESSAGE_ID=Carlos_test_7
+
 
 # -si
 function test {
@@ -9,8 +10,9 @@ function test {
   cat /tmp/file
 }
 
-# while true; do
-  # sleep 1
+while true; do
+  sleep 1
   test "{\"Id\":\"$MESSAGE_ID\",\"TotalParts\":2,\"PartNumber\":0,\"Data\":\"Happy \"}"
-  test "{\"Id\":\"Carlos_test\",\"TotalParts\":2,\"PartNumber\":1,\"Data\":\"Thanksgiving\"}"
-# done
+  sleep 1
+  test "{\"Id\":\"$MESSAGE_ID\",\"TotalParts\":2,\"PartNumber\":1,\"Data\":\"Thanksgiving\"}"
+done
