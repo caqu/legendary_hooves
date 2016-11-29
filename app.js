@@ -40,13 +40,24 @@ app.post('/', function(req, res) {
   */
   // Save stuff
   db.set(msg_id + ":TotalParts", totals_number);
-  db.hmset(msg_id + ':' + part_number, {
-    'Data': data
+
+  // GET msg_id:Parts
+  // if not exists,
+  //   create new array
+  // save in known position,
+
+  db.get(msg_id + ":Parts", function(err, totalParts) {
+    // if (err) {
+    console.log(err);
+    console.log(totalParts);
+    // }
   });
 
 
+  // Kill request
   return res.send('temp');
 
+  db.set(msg_id + ':Parts', );
 
   // See if all parts are in
   db.get(msg_id + ":TotalParts", function(err, totalParts) {
