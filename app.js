@@ -45,19 +45,22 @@ app.post('/', function(req, res) {
   // if not exists,
   //   create new array
   // save in known position,
-
-  db.get(msg_id + ":Parts", function(err, totalParts) {
-    // if (err) {
-    console.log(err);
-    console.log(totalParts);
-    // }
+  db.get(msg_id + ":Parts", function(err, parts) {
+    console.log('err', err);
+    console.log('parts', parts);
+    if (!parts) {
+      parts = new Array();
+    } else {};
+    console.log('2parts', parts);
+    parts[part_number] = data;
+    console.log('3parts', parts);
+    db.set(msg_id + ':Parts', parts);
   });
-
 
   // Kill request
   return res.send('temp');
 
-  db.set(msg_id + ':Parts', );
+
 
   // See if all parts are in
   db.get(msg_id + ":TotalParts", function(err, totalParts) {
